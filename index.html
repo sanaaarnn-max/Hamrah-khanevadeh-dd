@@ -1,1 +1,254 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>همراه خانواده</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Tahoma,Arial;background:#fff;color:#403640}
+.container{max-width:900px;margin:auto;padding:15px}
+.header{background:linear-gradient(135deg,#e8a7bd,#f3c7d5);padding:28px;text-align:center;border-radius:22px;margin-bottom:18px}
+.card,.login{background:#fff5f8;border:1px solid #f1d9e2;border-radius:18px;padding:18px;margin:12px 0}
+button{width:100%;border:0;border-radius:12px;padding:13px;margin-top:10px;background:#d98eaa;color:white;font-size:16px}
+.gray{background:#938991}.red{background:#c96f7d}
+input,select,textarea{width:100%;padding:12px;margin-top:9px;border:1px solid #e4d1d9;border-radius:11px;font-family:inherit}
+textarea{min-height:100px}
+.login{max-width:450px;margin:25px auto;text-align:center}
+.panel{display:none}
+.box{background:#fff8fa;border:1px solid #f1d9e2;padding:14px;border-radius:13px;margin:10px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:#fcecf2;padding:16px;border-radius:14px;text-align:center}
+.student{background:#fff;border:1px solid #efd9e2;border-radius:14px;padding:14px;margin:10px 0}
+.student b{color:#c87998;font-size:18px}
+.progress{height:18px;background:#eee;border-radius:20px;overflow:hidden}
+.fill{height:100%;background:#d98eaa}
+.footer{text-align:center;color:#999;padding:20px}
+</style>
+</head>
 
+<body>
+<div class="container">
+
+<div class="header">
+<h1>🌱 همراه خانواده</h1>
+<p>سامانه هوشمند ارتباط مدرسه و خانواده</p>
+</div>
+
+<div id="home">
+<div class="card">
+<h2>👨‍👩‍👧 والدین</h2>
+<p>مشاهده وضعیت فرزند و ارتباط با مدرسه</p>
+<button onclick="login('parent')">ورود والدین</button>
+</div>
+
+<div class="card">
+<h2>👩‍🏫 معلمان</h2>
+<p>مدیریت دانش‌آموزان و ارتباط با خانواده</p>
+<button onclick="login('teacher')">ورود معلم</button>
+</div>
+
+<div class="card">
+<h2>👩‍💼 مدیریت مدرسه</h2>
+<p>مدیریت هوشمند مدرسه</p>
+<button onclick="login('admin')">ورود مدیریت</button>
+</div>
+</div>
+
+<div id="panel" class="panel"></div>
+
+<div class="footer">🌱 همراه خانواده | نسخه نمایشی مدرسه</div>
+</div>
+
+<script>
+let role="";
+
+function login(r){
+role=r;
+let title=r==="parent"?"ورود والدین":r==="teacher"?"ورود معلم":"ورود مدیریت";
+document.getElementById("home").style.display="none";
+document.getElementById("panel").style.display="block";
+document.getElementById("panel").innerHTML=
+'<div class="login"><h2>🔐 '+title+'</h2>'+
+'<input id="user" placeholder="نام کاربری">'+
+'<input id="pass" type="password" placeholder="رمز عبور">'+
+'<button onclick="checkLogin()">ورود</button>'+
+'<button class="gray" onclick="home()">بازگشت</button></div>';
+}
+
+function checkLogin(){
+let u=document.getElementById("user").value;
+let p=document.getElementById("pass").value;
+
+if((role==="parent"&&u==="parent"&&p==="2468")||
+(role==="teacher"&&u==="teacher"&&p==="5678")||
+(role==="admin"&&u==="admin"&&p==="1234")){
+if(role==="parent")showParent();
+if(role==="teacher")showTeacher();
+if(role==="admin")showAdmin();
+}else alert("نام کاربری یا رمز عبور اشتباه است ❗");
+}
+
+function home(){
+document.getElementById("panel").style.display="none";
+document.getElementById("home").style.display="block";
+}
+
+function back(){
+if(role==="parent")showParent();
+else if(role==="teacher")showTeacher();
+else showAdmin();
+}
+
+function showParent(){
+document.getElementById("panel").innerHTML=
+'<div class="card"><h2>👨‍👩‍👧 پنل والدین</h2>'+
+'<div class="box"><b>👤 فرزند:</b> آرین محمدی<br>📚 پایه: سوم</div>'+
+'<h3>📊 وضعیت آموزشی</h3>'+
+'<p>پیشرفت آموزشی</p><div class="progress"><div class="fill" style="width:85%"></div></div>'+
+'<p>حضور و مشارکت: بسیار خوب</p>'+
+'<button onclick="parentMessage()">💬 پیام به مدرسه</button>'+
+'<button onclick="announcements()">📢 اطلاعیه‌های مدرسه</button>'+
+'<button onclick="calendar()">📅 تقویم مدرسه</button>'+
+'<button class="gray" onclick="home()">خروج</button></div>';
+}
+
+function parentMessage(){
+document.getElementById("panel").innerHTML=
+'<div class="card"><h2>💬 درخواست به مدرسه</h2>'+
+'<textarea id="req" placeholder="متن درخواست یا پیام خود را بنویسید..."></textarea>'+
+'<button onclick="sendRequest()">ارسال درخواست</button>'+
+'<button class="gray" onclick="showParent()">بازگشت</button></div>';
+}
+
+function sendRequest(){
+let x=document.getElementById("req").value.trim();
+if(!x){alert("متن درخواست را وارد کنید");return}
+localStorage.setItem("request",x);
+alert("درخواست با موفقیت ثبت شد ✅");
+showParent();
+}
+
+function announcements(){
+document.getElementById("panel").innerHTML=
+'<div class="card"><h2>📢 اطلاعیه‌های مدرسه</h2>'+
+'<div class="box"><b>شروع هفته آموزشی</b><br>حضور دانش‌آموزان طبق برنامه مدرسه انجام می‌شود.</div>'+
+'<div class="box"><b>جلسه اولیا و مربیان</b><br>زمان جلسه از طریق مدرسه اعلام خواهد شد.</div>'+
+'<button class="gray" onclick="showParent()">بازگشت</button></div>';
+}
+
+function calendar(){
+document.getElementById("panel").innerHTML=
+'<div class="card"><h2>📅 تقویم هوشمند مدرسه</h2>'+
+'<div class="box">شنبه — جلسه معلمان</div>'+
+'<div class="box">دوشنبه — جلسه اولیا و مربیان</div>'+
+'<div class="box">چهارشنبه — ارزیابی آموزشی</div>'+
+'<button class="gray" onclick="back()">بازگشت</button></div>';
+}
+
+function showTeacher(){
+document.getElementById("panel").innerHTML=
+'<div class="card"><h2>👩‍🏫 پنل معلم</h2>'+
+'<div class="grid"><div class="stat">👨‍🎓<br>دانش‌آموزان<br><b>'+getStudents().length+'</b></div>'+
+'<div class="stat">💬<br>ارتباط با خانواده</div></div>'+
+'<button onclick="studentList()">👨‍🎓 فهرست دانش‌آموزان</button>'+
+'<button onclick="teacherMessage()">💬 ارتباط با خانواده‌ها</button>'+
+'<button onclick="calendar()">📅 تقویم مدرسه</button>'+
+'<button class="gray" onclick="home()">خروج</button></div>';
+}
+
+function studentList(){
+let s=getStudents();
+let h='<div class="card"><h2>👨‍🎓 فهرست دانش‌آموزان</h2>';
+if(!s.length)h+='<div class="box">هنوز دانش‌آموزی ثبت نشده است.</div>';
+s.forEach(x=>h+='<div class="student"><b>👤 '+x.name+'</b><br>📚 پایه: '+x.grade+'</div>');
+h+='<button class="gray" onclick="showTeacher()">بازگشت</button></div>';
+document.getElementById("panel").innerHTML=h;
+}
+
+function teacherMessage(){
+document.getElementById("panel").innerHTML=
+'<div class="card"><h2>💬 ارتباط با خانواده‌ها</h2>'+
+'<textarea placeholder="پیام خود را بنویسید..."></textarea>'+
+'<button onclick="alert(\'پیام با موفقیت ثبت شد ✅\')">ارسال پیام</button>'+
+'<button class="gray" onclick="showTeacher()">بازگشت</button></div>';
+}
+
+function showAdmin(){
+document.getElementById("panel").innerHTML=
+'<div class="card"><h2>👩‍💼 داشبورد مدیریت</h2>'+
+'<div class="grid"><div class="stat">👨‍🎓<br>دانش‌آموزان<br><b>'+getStudents().length+'</b></div>'+
+'<div class="stat">📨<br>درخواست‌ها<br><b>1</b></div></div>'+
+'<button onclick="studentManagement()">👨‍🎓 مدیریت دانش‌آموزان</button>'+
+'<button onclick="adminRequest()">📨 درخواست‌های والدین</button>'+
+'<button onclick="adminReport()">📊 گزارش عملکرد مدرسه</button>'+
+'<button onclick="announcements()">📢 مدیریت اطلاعیه‌ها</button>'+
+'<button onclick="calendar()">📅 تقویم هوشمند</button>'+
+'<button class="gray" onclick="home()">خروج</button></div>';
+}
+
+function getStudents(){
+return JSON.parse(localStorage.getItem("students")||"[]");
+}
+
+function saveStudents(x){
+localStorage.setItem("students",JSON.stringify(x));
+}
+
+function studentManagement(){
+let s=getStudents();
+let h='<div class="card"><h2>👨‍🎓 مدیریت دانش‌آموزان</h2>'+
+'<input id="studentName" placeholder="نام و نام خانوادگی">'+
+'<select id="studentGrade"><option value="">انتخاب پایه</option>'+
+'<option>اول</option><option>دوم</option><option>سوم</option>'+
+'<option>چهارم</option><option>پنجم</option><option>ششم</option></select>'+
+'<button onclick="addStudent()">💾 ذخیره دانش‌آموز</button><h3>📋 فهرست</h3>';
+
+if(!s.length)h+='<div class="box">هنوز دانش‌آموزی ثبت نشده است.</div>';
+
+s.forEach(x=>{
+h+='<div class="student"><b>👤 '+x.name+'</b><br>📚 پایه: '+x.grade+
+'<button class="red" onclick="deleteStudent('+x.id+')">🗑️ حذف</button></div>';
+});
+
+h+='<button class="gray" onclick="showAdmin()">بازگشت</button></div>';
+document.getElementById("panel").innerHTML=h;
+}
+
+function addStudent(){
+let n=document.getElementById("studentName").value.trim();
+let g=document.getElementById("studentGrade").value;
+if(!n||!g){alert("نام و پایه را وارد کنید ❗");return}
+let s=getStudents();
+s.push({id:Date.now(),name:n,grade:g});
+saveStudents(s);
+alert("دانش‌آموز ذخیره شد ✅");
+studentManagement();
+}
+
+function deleteStudent(id){
+let s=getStudents().filter(x=>x.id!==id);
+saveStudents(s);
+studentManagement();
+}
+
+function adminRequest(){
+let r=localStorage.getItem("request")||"درخواستی ثبت نشده است.";
+document.getElementById("panel").innerHTML=
+'<div class="card"><h2>📨 درخواست‌های والدین</h2>'+
+'<div class="box">'+r+'</div>'+
+'<button class="gray" onclick="showAdmin()">بازگشت</button></div>';
+}
+
+function adminReport(){
+document.getElementById("panel").innerHTML=
+'<div class="card"><h2>📊 گزارش عملکرد مدرسه</h2>'+
+'<div class="stat"><span>میزان پیشرفت آموزشی</span><h1>۸۵٪</h1></div>'+
+'<div class="box">حضور و مشارکت دانش‌آموزان: بسیار خوب</div>'+
+'<div class="box">ارتباط مدرسه و خانواده: فعال</div>'+
+'<button onclick="window.print()">🖨️ چاپ / ذخیره گزارش</button>'+
+'<button class="gray" onclick="showAdmin()">بازگشت</button></div>';
+}
+</script>
+</body>
+</html>
