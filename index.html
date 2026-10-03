@@ -32,7 +32,8 @@ textarea{min-height:100px}
 
 <div class="header">
 <h1>🌱 همراه خانواده</h1>
-<p>سامانه هوشمند ارتباط مدرسه و خانواده</p>
+  <p>سامانه هوشمند ارتباط مدرسه و خانواده</p>
+<p><b>دبستان دخترانه امام حسین (ع)، سرخس</b></p>
 </div>
 
 <div id="home">
@@ -115,17 +116,40 @@ document.getElementById("panel").innerHTML=
 
 function parentMessage(){
 document.getElementById("panel").innerHTML=
-'<div class="card"><h2>💬 درخواست به مدرسه</h2>'+
-'<textarea id="req" placeholder="متن درخواست یا پیام خود را بنویسید..."></textarea>'+
-'<button onclick="sendRequest()">ارسال درخواست</button>'+
+'<div class="card"><h2>💬 پیام به مدرسه</h2>'+
+'<input id="parentName" placeholder="نام و نام خانوادگی والد">'+
+'<input id="childName" placeholder="نام و نام خانوادگی فرزند">'+
+'<select id="childGrade">'+
+'<option value="">انتخاب پایه</option>'+
+'<option>اول</option><option>دوم</option><option>سوم</option>'+
+'<option>چهارم</option><option>پنجم</option><option>ششم</option>'+
+'</select>'+
+'<textarea id="req" placeholder="متن پیام خود را بنویسید..."></textarea>'+
+'<button onclick="sendRequest()">📩 ارسال پیام</button>'+
 '<button class="gray" onclick="showParent()">بازگشت</button></div>';
 }
 
 function sendRequest(){
-let x=document.getElementById("req").value.trim();
-if(!x){alert("متن درخواست را وارد کنید");return}
-localStorage.setItem("request",x);
-alert("درخواست با موفقیت ثبت شد ✅");
+let parent=document.getElementById("parentName").value.trim();
+let child=document.getElementById("childName").value.trim();
+let grade=document.getElementById("childGrade").value;
+let message=document.getElementById("req").value.trim();
+
+if(!parent || !child || !grade || !message){
+alert("لطفاً همه اطلاعات را وارد کنید ❗");
+return;
+}
+
+let request={
+parent:parent,
+child:child,
+grade:grade,
+message:message
+};
+
+localStorage.setItem("request",JSON.stringify(request));
+
+alert("پیام با موفقیت ارسال شد ✅");
 showParent();
 }
 
