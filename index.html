@@ -2,142 +2,277 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>همراه خانواده</title>
 
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;font-family:Tahoma,Arial,sans-serif;
- background:#fff;color:#333;direction:rtl
+ margin:0;
+ font-family:Tahoma,Arial,sans-serif;
+ background:#fff;
+ color:#403640;
+ direction:rtl
 }
-header{
- background:#f8c9d8;padding:22px 15px;text-align:center;
- box-shadow:0 2px 10px #ddd
+.container{max-width:900px;margin:auto;padding:15px}
+
+.header{
+ background:linear-gradient(135deg,#e8a7bd,#f3c7d5);
+ padding:28px 20px;
+ text-align:center;
+ border-radius:22px;
+ margin-bottom:18px;
+ box-shadow:0 4px 15px #ead6dd
 }
-header h1{margin:0;color:#222;font-size:27px}
-header p{margin:8px 0 3px}
-header small{color:#222}
-.container{max-width:1050px;margin:auto;padding:20px}
+.header h1{margin:0;color:#222;font-size:29px}
+.header p{margin:8px 0;color:#403640}
+.header small{color:#222}
+
 .card{
- background:#fff;border:1px solid #f0d9e1;border-radius:18px;
- padding:20px;margin:15px 0;box-shadow:0 4px 15px #eee
+ background:#fff5f8;
+ border:1px solid #f1d9e2;
+ border-radius:18px;
+ padding:18px;
+ margin:12px 0;
+ box-shadow:0 3px 12px rgba(180,130,150,.08)
 }
-.login{max-width:500px;margin:45px auto}
-input,select,textarea{
- width:100%;padding:12px;margin:7px 0;
- border:1px solid #ddd;border-radius:10px;font-family:inherit
+
+.login{
+ max-width:450px;
+ margin:28px auto;
+ text-align:center
 }
+
 button{
- border:0;border-radius:10px;padding:11px 17px;
- margin:5px;cursor:pointer;font-family:inherit;
- background:#ef9fbb;color:#222;font-weight:bold
+ width:100%;
+ border:0;
+ border-radius:12px;
+ padding:13px;
+ margin-top:10px;
+ background:#d98eaa;
+ color:#fff;
+ font-size:16px;
+ font-family:inherit;
+ cursor:pointer
 }
-button:hover{opacity:.85}
-.danger{background:#f2b1b1}
-.green{background:#bde5c8}
-.gray{background:#e9e9e9}
+button:hover{opacity:.88}
+.gray{background:#938991}
+.red{background:#c96f7d}
+.green{background:#8fbd9b}
+
+input,select,textarea{
+ width:100%;
+ padding:12px;
+ margin-top:9px;
+ border:1px solid #e4d1d9;
+ border-radius:11px;
+ font-family:inherit;
+ background:#fff
+}
+textarea{min-height:100px}
+
 .hidden{display:none!important}
-.menu{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
- gap:12px;margin:15px 0
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+ gap:10px
 }
-.menu button{min-height:58px}
+
 .stat{
- display:inline-block;background:#fff1f5;border-radius:14px;
- padding:15px;margin:5px;min-width:130px;text-align:center
+ background:#fcecf2;
+ padding:16px;
+ border-radius:14px;
+ text-align:center
 }
+
+.box{
+ background:#fff8fa;
+ border:1px solid #f1d9e2;
+ padding:14px;
+ border-radius:13px;
+ margin:10px 0
+}
+
 .student{
- border:1px solid #eee;border-radius:14px;
- padding:14px;margin:10px 0;background:#fff
+ background:#fff;
+ border:1px solid #efd9e2;
+ border-radius:14px;
+ padding:14px;
+ margin:10px 0
 }
-.student-top{
- display:flex;justify-content:space-between;
- align-items:center;gap:10px
+.student b{color:#c87998;font-size:17px}
+
+.menu{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+ gap:10px
 }
+
+.menu button{
+ margin:0;
+ min-height:55px
+}
+
 .badge{
- display:inline-block;background:#f8d6e1;
- padding:5px 10px;border-radius:20px;font-size:12px
+ display:inline-block;
+ background:#f8d6e1;
+ padding:5px 10px;
+ border-radius:20px;
+ font-size:12px;
+ margin:3px
 }
-.notice,.msg{
- background:#fff5f8;padding:13px;
- border-radius:12px;margin:9px 0
-}
-.teacher-box{
- background:#fafafa;border:1px solid #eee;
- padding:12px;border-radius:12px;margin:8px 0
-}
+
 .teacher-grid{
  display:grid;
  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
- gap:9px;margin-top:12px
-}
-.teacher-option{
- display:flex;align-items:center;
- gap:7px;background:#fff;
- border:1px solid #ddd;padding:11px;
- border-radius:10px;cursor:pointer
-}
-.teacher-option input{
- width:auto;margin:0
-}
-.selected-box{
- background:#fdf0f4;
- padding:10px;border-radius:10px;
+ gap:8px;
  margin-top:10px
 }
-hr{border:0;border-top:1px solid #eee;margin:20px 0}
-table{width:100%;border-collapse:collapse}
-th,td{border:1px solid #eee;padding:9px;text-align:center}
+
+.teacher-option{
+ display:flex;
+ align-items:center;
+ gap:7px;
+ background:#fff;
+ border:1px solid #ead9df;
+ padding:10px;
+ border-radius:10px;
+ cursor:pointer
+}
+
+.teacher-option input{
+ width:auto;
+ margin:0
+}
+
+.selected-box{
+ background:#fdf0f4;
+ padding:10px;
+ border-radius:10px;
+ margin-top:10px
+}
+
+.notice,.msg{
+ background:#fff8fa;
+ border:1px solid #f1d9e2;
+ padding:13px;
+ border-radius:12px;
+ margin:9px 0
+}
+
+table{
+ width:100%;
+ border-collapse:collapse;
+ background:#fff
+}
+th,td{
+ border:1px solid #eee;
+ padding:9px;
+ text-align:center
+}
 th{background:#fbe1e9}
-footer{text-align:center;color:#888;padding:25px}
+
+.progress{
+ height:18px;
+ background:#eee;
+ border-radius:20px;
+ overflow:hidden
+}
+.fill{
+ height:100%;
+ background:#d98eaa
+}
+
+.footer{
+ text-align:center;
+ color:#aaa;
+ padding:20px
+}
+
+.home-card{
+ text-align:center
+}
+.home-card h2{margin-bottom:6px}
+
+#error{
+ color:#c00;
+ margin-top:10px;
+ min-height:20px
+}
+
+.small-title{
+ color:#c87998;
+ font-weight:bold
+}
+
+hr{
+ border:0;
+ border-top:1px solid #eadde2;
+ margin:20px 0
+}
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>🌱 همراه خانواده</h1>
-<p>سامانه هوشمند ارتباط مدرسه و خانواده</p>
-<small>دبستان دخترانه امام حسین (ع) ، سرخس</small><br>
-<small>نسخه نمایشی</small>
-</header>
-
 <div class="container">
 
-<!-- LOGIN -->
-<div id="loginPage" class="card login">
-<h2>ورود به سامانه</h2>
+<div class="header">
+<h1>🌱 همراه خانواده</h1>
+<p>سامانه هوشمند ارتباط مدرسه و خانواده</p>
+<p><b>دبستان دخترانه امام حسین (ع) ، سرخس</b></p>
+<small>نسخه نمایشی</small>
+</div>
 
-<select id="loginRole">
-<option value="parent">ورود والدین</option>
-<option value="teacher">ورود معلم</option>
-<option value="admin">ورود مدیر</option>
-</select>
+<!-- صفحه اصلی -->
+<div id="home">
+
+<div class="card home-card">
+<h2>👨‍👩‍👧 والدین</h2>
+<p>مشاهده وضعیت فرزند و ارتباط با مدرسه</p>
+<button onclick="showLogin('parent')">ورود والدین</button>
+</div>
+
+<div class="card home-card">
+<h2>👩‍🏫 معلمان</h2>
+<p>مشاهده دانش‌آموزان و ارتباط با خانواده‌ها</p>
+<button onclick="showLogin('teacher')">ورود معلم</button>
+</div>
+
+<div class="card home-card">
+<h2>👩‍💼 مدیریت مدرسه</h2>
+<p>مدیریت هوشمند مدرسه و دانش‌آموزان</p>
+<button onclick="showLogin('admin')">ورود مدیریت</button>
+</div>
+
+</div>
+
+<!-- ورود -->
+<div id="loginBox" class="card login hidden">
+
+<h2 id="loginTitle">🔐 ورود به سامانه</h2>
 
 <input id="username" placeholder="نام کاربری">
 <input id="password" type="password" placeholder="رمز عبور">
 
 <button onclick="login()">ورود به سامانه</button>
 
-<div id="loginError" style="color:#c00;margin-top:10px"></div>
+<button class="gray" onclick="goHome()">بازگشت</button>
 
-<div class="notice">
-<b>ورود مدیر:</b> admin / 1234
-</div>
+<div id="error"></div>
+
 </div>
 
-<!-- APP -->
+<!-- برنامه -->
 <div id="app" class="hidden">
 
 <div class="card">
-<div class="student-top">
-<h2 id="welcome">خوش آمدید</h2>
-<button class="danger" onclick="logout()">خروج</button>
-</div>
+<h2 id="welcome"></h2>
+<button class="gray" onclick="goHome()">خروج</button>
 </div>
 
-<!-- PARENT -->
+<!-- والد -->
 <div id="parentPanel" class="hidden">
 
 <div class="menu">
@@ -152,7 +287,7 @@ footer{text-align:center;color:#888;padding:25px}
 <div id="parentContent" class="card"></div>
 </div>
 
-<!-- TEACHER -->
+<!-- معلم -->
 <div id="teacherPanel" class="hidden">
 
 <div class="menu">
@@ -166,7 +301,7 @@ footer{text-align:center;color:#888;padding:25px}
 <div id="teacherContent" class="card"></div>
 </div>
 
-<!-- ADMIN -->
+<!-- مدیر -->
 <div id="adminPanel" class="hidden">
 
 <div class="menu">
@@ -185,14 +320,15 @@ footer{text-align:center;color:#888;padding:25px}
 </div>
 
 </div>
-</div>
 
-<footer>سامانه همراه خانواده 🌱</footer>
+<div class="footer">🌱 همراه خانواده</div>
+
+</div>
 
 <script>
 
 /* =========================
-   دانش‌آموزان
+دانش‌آموزان
 ========================= */
 
 const students=[
@@ -354,7 +490,7 @@ const students=[
 ];
 
 /* =========================
-   معلمان
+معلمان
 ========================= */
 
 const teachers=[
@@ -379,75 +515,29 @@ let role="";
 let currentUser=null;
 let currentStudent=null;
 
-/*
-  مهم:
-  assignments به این شکل ذخیره می‌شود:
+let assignments=JSON.parse(
+ localStorage.getItem("hf_multi_teacher_assignments")||"{}"
+);
 
-  {
-    "کد دانش‌آموز": [
-      "teacher1",
-      "teacher2",
-      "teacher3"
-    ]
-  }
+let announcements=JSON.parse(
+ localStorage.getItem("hf_announcements")||"[]"
+);
 
-  بنابراین یک دانش‌آموز می‌تواند چند معلم داشته باشد.
-*/
+let requests=JSON.parse(
+ localStorage.getItem("hf_requests")||"[]"
+);
 
-let assignments=
- JSON.parse(localStorage.getItem("hf_multi_teacher_assignments")||"{}");
+let messages=JSON.parse(
+ localStorage.getItem("hf_messages")||"[]"
+);
 
-let announcements=
- JSON.parse(localStorage.getItem("hf_announcements")||"[]");
+let calendarData=JSON.parse(
+ localStorage.getItem("hf_calendar")||"[]"
+);
 
-let requests=
- JSON.parse(localStorage.getItem("hf_requests")||"[]");
-
-let messages=
- JSON.parse(localStorage.getItem("hf_messages")||"[]");
-
-let calendar=
- JSON.parse(localStorage.getItem("hf_calendar")||"[]");
-
-let attendance=
- JSON.parse(localStorage.getItem("hf_attendance")||"{}");
-
-
-/* =========================
-   ابزارها
-========================= */
-
-function saveAll(){
- localStorage.setItem(
-  "hf_multi_teacher_assignments",
-  JSON.stringify(assignments)
- );
-
- localStorage.setItem(
-  "hf_announcements",
-  JSON.stringify(announcements)
- );
-
- localStorage.setItem(
-  "hf_requests",
-  JSON.stringify(requests)
- );
-
- localStorage.setItem(
-  "hf_messages",
-  JSON.stringify(messages)
- );
-
- localStorage.setItem(
-  "hf_calendar",
-  JSON.stringify(calendar)
- );
-
- localStorage.setItem(
-  "hf_attendance",
-  JSON.stringify(attendance)
- );
-}
+let attendance=JSON.parse(
+ localStorage.getItem("hf_attendance")||"{}"
+);
 
 function normalize(x){
  return String(x||"")
@@ -469,107 +559,147 @@ function gradeText(g){
  return "پایه "+g+" ابتدایی";
 }
 
+function saveAll(){
+ localStorage.setItem(
+  "hf_multi_teacher_assignments",
+  JSON.stringify(assignments)
+ );
+ localStorage.setItem(
+  "hf_announcements",
+  JSON.stringify(announcements)
+ );
+ localStorage.setItem(
+  "hf_requests",
+  JSON.stringify(requests)
+ );
+ localStorage.setItem(
+  "hf_messages",
+  JSON.stringify(messages)
+ );
+ localStorage.setItem(
+  "hf_calendar",
+  JSON.stringify(calendarData)
+ );
+ localStorage.setItem(
+  "hf_attendance",
+  JSON.stringify(attendance)
+ );
+}
+
 function getStudent(code){
  return students.find(
   s=>normalize(s[0])===normalize(code)
  );
 }
 
-/* همه معلم‌های یک دانش‌آموز */
 function getStudentTeachers(code){
- const list=assignments[code]||[];
+ let list=assignments[code]||[];
  return teachers.filter(t=>list.includes(t.u));
 }
 
-/* آیا برای این معلم اختصاص اختصاصی ثبت شده؟ */
 function teacherHasAssignment(u){
  return Object.values(assignments)
  .some(list=>Array.isArray(list)&&list.includes(u));
 }
 
-/* دانش‌آموزان قابل مشاهده هر معلم */
 function getTeacherStudents(u){
 
  const t=teachers.find(x=>x.u===u);
-
  if(!t)return[];
 
- /*
-  اگر برای این معلم حتی یک اختصاص اختصاصی ثبت شده باشد،
-  فقط همان دانش‌آموزان را نشان می‌دهیم.
- */
  if(teacherHasAssignment(u)){
   return students.filter(
    s=>(assignments[s[0]]||[]).includes(u)
   );
  }
 
- /*
-  اگر هنوز برای این معلم اختصاص اختصاصی ثبت نشده،
-  پایه‌های پیش‌فرض خودش نمایش داده می‌شود.
- */
  return students.filter(
   s=>t.grades.includes(s[2])
  );
 }
 
-
 /* =========================
-   ورود
+ورود
 ========================= */
+
+function showLogin(r){
+
+ role=r;
+
+ document.getElementById("home")
+ .classList.add("hidden");
+
+ document.getElementById("loginBox")
+ .classList.remove("hidden");
+
+ document.getElementById("app")
+ .classList.add("hidden");
+
+ document.getElementById("username").value="";
+ document.getElementById("password").value="";
+ document.getElementById("error").textContent="";
+
+ let title=
+ r==="parent"?"👨‍👩‍👧 ورود والدین":
+ r==="teacher"?"👩‍🏫 ورود معلم":
+ "👩‍💼 ورود مدیریت";
+
+ document.getElementById("loginTitle").textContent=title;
+
+ setTimeout(()=>{
+  document.getElementById("username").focus();
+ },100);
+}
 
 function login(){
 
- const r=document.getElementById("loginRole").value;
- const u=normalize(
+ let u=normalize(
   document.getElementById("username").value.trim()
  );
- const p=normalize(
+
+ let p=normalize(
   document.getElementById("password").value.trim()
  );
 
- const error=document.getElementById("loginError");
+ let error=document.getElementById("error");
+
  error.textContent="";
 
- if(r==="admin"){
-
-  if(u===admin.u && p===admin.p){
-
-   role="admin";
-   currentUser=admin;
-
-   openPanel();
-   return;
-  }
+ if(!u||!p){
+  error.textContent="لطفاً نام کاربری و رمز عبور را وارد کنید.";
+  return;
  }
 
- if(r==="teacher"){
+ if(role==="admin" &&
+    u===admin.u &&
+    p===normalize(admin.p)){
 
-  const t=teachers.find(x=>
+  currentUser=admin;
+  openPanel();
+  return;
+ }
+
+ if(role==="teacher"){
+
+  let t=teachers.find(x=>
    x.u.toLowerCase()===u.toLowerCase() &&
    normalize(x.p)===p
   );
 
   if(t){
-
-   role="teacher";
    currentUser=t;
-
    openPanel();
    return;
   }
  }
 
- if(r==="parent"){
+ if(role==="parent"){
 
-  const s=getStudent(u);
+  let s=getStudent(u);
 
   if(s && normalize(s[0])===p){
-
-   role="parent";
    currentUser=s;
    currentStudent=s;
-
    openPanel();
    return;
   }
@@ -581,7 +711,7 @@ function login(){
 
 function openPanel(){
 
- document.getElementById("loginPage")
+ document.getElementById("loginBox")
  .classList.add("hidden");
 
  document.getElementById("app")
@@ -597,89 +727,78 @@ function openPanel(){
  .classList.add("hidden");
 
  if(role==="admin"){
-
   document.getElementById("welcome").textContent=
   "سلام مدیر مدرسه 🌷";
-
   document.getElementById("adminPanel")
   .classList.remove("hidden");
-
   adminHome();
  }
 
  if(role==="teacher"){
-
   document.getElementById("welcome").textContent=
   "سلام "+currentUser.name+" 🌷";
-
   document.getElementById("teacherPanel")
   .classList.remove("hidden");
-
   teacherHome();
  }
 
  if(role==="parent"){
-
   document.getElementById("welcome").textContent=
   "سلام خانواده "+currentStudent[1]+" 🌷";
-
   document.getElementById("parentPanel")
   .classList.remove("hidden");
-
   parentHome();
  }
 }
 
-function logout(){
+function goHome(){
  location.reload();
 }
 
-
 /* =========================
-   والدین
+والدین
 ========================= */
 
 function parentHome(){
 
- const s=currentStudent;
- const ts=getStudentTeachers(s[0]);
+ let s=currentStudent;
+ let ts=getStudentTeachers(s[0]);
 
  document.getElementById("parentContent").innerHTML=`
 
  <h2>🏠 صفحه اصلی</h2>
 
- <div class="stat">
- 👩‍🎓<br>
- <b>${esc(s[1])}</b>
- </div>
+ <div class="grid">
+  <div class="stat">
+   👩‍🎓<br>
+   <b>${esc(s[1])}</b>
+  </div>
 
- <div class="stat">
- 📚<br>
- ${gradeText(s[2])}
- </div>
+  <div class="stat">
+   📚<br>
+   ${gradeText(s[2])}
+  </div>
 
- <div class="stat">
- 👩‍🏫<br>
- <b>${ts.length}</b>
- <br>معلم
+  <div class="stat">
+   👩‍🏫<br>
+   <b>${ts.length}</b><br>
+   معلم
+  </div>
  </div>
 
  <hr>
 
- <h3>معلم‌های ثبت‌شده برای دانش‌آموز</h3>
+ <h3>👩‍🏫 معلم‌های دانش‌آموز</h3>
 
  ${
  ts.length
  ?
  ts.map(t=>`
- <span class="badge">
- ${esc(t.name)}
- </span>
- `).join(" ")
+ <span class="badge">${esc(t.name)}</span>
+ `).join("")
  :
- "<p>هنوز معلم اختصاصی ثبت نشده است.</p>"
+ "<div class='box'>هنوز معلم اختصاصی ثبت نشده است.</div>"
  }
-
  `;
 }
 
@@ -689,40 +808,31 @@ function parentStudy(){
 
  <h2>📚 وضعیت تحصیلی</h2>
 
- <div class="student">
+ <div class="box">
  <b>${esc(currentStudent[1])}</b><br>
  ${gradeText(currentStudent[2])}
  </div>
 
+ <p>پیشرفت آموزشی</p>
+
+ <div class="progress">
+  <div class="fill" style="width:85%"></div>
+ </div>
+
+ <br>
+
  <table>
-
- <tr>
- <th>مورد</th>
- <th>وضعیت</th>
- </tr>
-
- <tr>
- <td>فعالیت کلاسی</td>
- <td>در حال بررسی</td>
- </tr>
-
- <tr>
- <td>ارزشیابی</td>
- <td>ثبت نشده</td>
- </tr>
-
- <tr>
- <td>حضور و غیاب</td>
- <td>قابل مشاهده توسط مدرسه</td>
- </tr>
-
+ <tr><th>مورد</th><th>وضعیت</th></tr>
+ <tr><td>فعالیت کلاسی</td><td>بسیار خوب</td></tr>
+ <tr><td>ارزشیابی</td><td>در حال بررسی</td></tr>
+ <tr><td>حضور و غیاب</td><td>قابل مشاهده توسط مدرسه</td></tr>
  </table>
  `;
 }
 
 function parentMessages(){
 
- const arr=messages.filter(
+ let arr=messages.filter(
   m=>m.student===currentStudent[0]||m.student==="all"
  );
 
@@ -740,52 +850,48 @@ function parentMessages(){
  </div>
  `).join("")
  :
- "<p>پیامی ثبت نشده است.</p>"
+ "<div class='box'>پیامی ثبت نشده است.</div>"
  }
  `;
 }
 
 function parentRequests(){
 
+ let arr=requests.filter(
+  r=>r.student===currentStudent[0]
+ );
+
  document.getElementById("parentContent").innerHTML=`
 
  <h2>📝 درخواست به مدرسه</h2>
 
- <textarea
- id="requestText"
- rows="5"
- placeholder="متن درخواست خود را بنویسید..."
- ></textarea>
+ <textarea id="requestText"
+ placeholder="متن درخواست خود را بنویسید..."></textarea>
 
- <button onclick="sendRequest()">
- ثبت درخواست
- </button>
+ <button onclick="sendRequest()">📩 ثبت درخواست</button>
 
  <hr>
 
  <h3>درخواست‌های من</h3>
 
  ${
- requests
- .filter(r=>r.student===currentStudent[0])
- .map(r=>`
+ arr.length
+ ?
+ arr.map(r=>`
  <div class="msg">
  ${esc(r.text)}<br>
- <span class="badge">
- ${esc(r.status||"در انتظار بررسی")}
- </span>
+ <span class="badge">${esc(r.status||"در انتظار بررسی")}</span>
  </div>
  `).join("")
- || "<p>درخواستی ثبت نشده است.</p>"
+ :
+ "<div class='box'>درخواستی ثبت نشده است.</div>"
  }
-
  `;
 }
 
 function sendRequest(){
 
- const text=
- document.getElementById("requestText")
+ let text=document.getElementById("requestText")
  .value.trim();
 
  if(!text){
@@ -802,10 +908,9 @@ function sendRequest(){
  });
 
  saveAll();
-
  parentRequests();
 
- alert("درخواست ثبت شد.");
+ alert("درخواست با موفقیت ثبت شد ✅");
 }
 
 function parentNotices(){
@@ -825,9 +930,8 @@ function parentNotices(){
  </div>
  `).join("")
  :
- "<p>اطلاعیه‌ای ثبت نشده است.</p>"
+ "<div class='box'>اطلاعیه‌ای ثبت نشده است.</div>"
  }
-
  `;
 }
 
@@ -838,33 +942,37 @@ function parentCalendar(){
  <h2>📅 تقویم مدرسه</h2>
 
  ${
- calendar.length
+ calendarData.length
  ?
- calendar.map(c=>`
+ calendarData.map(c=>`
  <div class="notice">
  <b>${esc(c.date)}</b><br>
  ${esc(c.title)}
  </div>
  `).join("")
  :
- "<p>موردی در تقویم ثبت نشده است.</p>"
+ `
+ <div class="notice">شنبه — جلسه معلمان</div>
+ <div class="notice">دوشنبه — جلسه اولیا و مربیان</div>
+ <div class="notice">چهارشنبه — ارزیابی آموزشی</div>
+ `
  }
-
  `;
 }
 
-
 /* =========================
-   معلم
+معلم
 ========================= */
 
 function teacherHome(){
 
- const arr=getTeacherStudents(currentUser.u);
+ let arr=getTeacherStudents(currentUser.u);
 
  document.getElementById("teacherContent").innerHTML=`
 
  <h2>🏠 صفحه اصلی معلم</h2>
+
+ <div class="grid">
 
  <div class="stat">
  👩‍🎓<br>
@@ -878,16 +986,17 @@ function teacherHome(){
  پایه
  </div>
 
- <p>
- در بخش «دانش‌آموزان من» فقط دانش‌آموزانی را می‌بینید
- که برای شما ثبت شده‌اند.
- </p>
+ </div>
+
+ <div class="box">
+ در این سامانه فقط دانش‌آموزانی که برای شما اختصاص داده شده‌اند نمایش داده می‌شوند.
+ </div>
  `;
 }
 
 function teacherStudents(){
 
- const arr=getTeacherStudents(currentUser.u);
+ let arr=getTeacherStudents(currentUser.u);
 
  document.getElementById("teacherContent").innerHTML=`
 
@@ -897,35 +1006,20 @@ function teacherStudents(){
  arr.length
  ?
  arr.map(s=>`
-
  <div class="student">
-
- <div class="student-top">
-
- <div>
- <b>${esc(s[1])}</b><br>
- <small>${gradeText(s[2])}</small>
+ <b>👤 ${esc(s[1])}</b><br>
+ 📚 ${gradeText(s[2])}
  </div>
-
- <span class="badge">
- اختصاص‌یافته
- </span>
-
- </div>
-
- </div>
-
  `).join("")
  :
- "<p>دانش‌آموزی برای شما ثبت نشده است.</p>"
+ "<div class='box'>دانش‌آموزی برای شما ثبت نشده است.</div>"
  }
-
  `;
 }
 
 function teacherAttendance(){
 
- const arr=getTeacherStudents(currentUser.u);
+ let arr=getTeacherStudents(currentUser.u);
 
  document.getElementById("teacherContent").innerHTML=`
 
@@ -933,7 +1027,607 @@ function teacherAttendance(){
 
  ${
  arr.map(s=>`
+ <div class="student">
+ <b>${esc(s[1])}</b>
+ <button
+ onclick="setAttendance('${s[0]}','حاضر')">
+ حاضر
+ </button>
+ <button class="gray"
+ onclick="setAttendance('${s[0]}','غایب')">
+ غایب
+ </button>
+ </div>
+ `).join("")
+ }
+ `;
+}
+
+function setAttendance(code,status){
+
+ attendance[code]={
+  status:status,
+  date:new Date().toLocaleDateString("fa-IR")
+ };
+
+ saveAll();
+
+ alert("حضور و غیاب ثبت شد ✅");
+}
+
+function teacherMessage(){
+
+ let arr=getTeacherStudents(currentUser.u);
+
+ document.getElementById("teacherContent").innerHTML=`
+
+ <h2>💬 پیام به خانواده</h2>
+
+ <select id="messageStudent">
+
+ <option value="">انتخاب دانش‌آموز</option>
+
+ ${
+ arr.map(s=>
+ `<option value="${s[0]}">${esc(s[1])}</option>`
+ ).join("")
+ }
+
+ </select>
+
+ <textarea id="teacherMessageText"
+ placeholder="پیام خود را بنویسید..."></textarea>
+
+ <button onclick="sendTeacherMessage()">
+ 📩 ارسال پیام
+ </button>
+ `;
+}
+
+function sendTeacherMessage(){
+
+ let student=document.getElementById("messageStudent").value;
+ let text=document.getElementById("teacherMessageText").value.trim();
+
+ if(!student||!text){
+  alert("دانش‌آموز و متن پیام را وارد کنید.");
+  return;
+ }
+
+ messages.push({
+  student:student,
+  from:currentUser.name,
+  text:text,
+  date:new Date().toLocaleDateString("fa-IR")
+ });
+
+ saveAll();
+
+ alert("پیام ارسال شد ✅");
+
+ teacherMessage();
+}
+
+function teacherNotices(){
+ parentNotices();
+ document.getElementById("teacherContent").innerHTML=
+ document.getElementById("parentContent").innerHTML;
+}
+
+/* =========================
+مدیر
+========================= */
+
+function adminHome(){
+
+ document.getElementById("adminContent").innerHTML=`
+
+ <h2>📊 داشبورد مدیریت</h2>
+
+ <div class="grid">
+
+ <div class="stat">
+ 👩‍🎓<br>
+ <b>${students.length}</b><br>
+ دانش‌آموز
+ </div>
+
+ <div class="stat">
+ 👩‍🏫<br>
+ <b>${teachers.length}</b><br>
+ معلم
+ </div>
+
+ <div class="stat">
+ 📢<br>
+ <b>${announcements.length}</b><br>
+ اطلاعیه
+ </div>
+
+ <div class="stat">
+ 📝<br>
+ <b>${requests.length}</b><br>
+ درخواست
+ </div>
+
+ </div>
+
+ <div class="box">
+ <b>🧠 داشبورد هوشمند مدرسه</b><br>
+ مدیریت دانش‌آموزان، معلمان، ارتباط با خانواده و گزارش‌های مدرسه
+ </div>
+ `;
+}
+
+function adminStudents(){
+
+ document.getElementById("adminContent").innerHTML=`
+
+ <h2>👩‍🎓 مدیریت دانش‌آموزان</h2>
+
+ <select id="studentGradeFilter"
+ onchange="renderAdminStudents()">
+
+ <option value="all">همه پایه‌ها</option>
+ <option value="1">پایه اول</option>
+ <option value="2">پایه دوم</option>
+ <option value="3">پایه سوم</option>
+ <option value="4">پایه چهارم</option>
+ <option value="5">پایه پنجم</option>
+ <option value="6">پایه ششم</option>
+
+ </select>
+
+ <input
+ id="studentSearch"
+ placeholder="جستجوی نام دانش‌آموز..."
+ oninput="renderAdminStudents()">
+
+ <div id="adminStudentList"></div>
+ `;
+
+ renderAdminStudents();
+}
+
+function renderAdminStudents(){
+
+ let grade=document.getElementById("studentGradeFilter").value;
+ let search=document.getElementById("studentSearch").value.trim();
+
+ let arr=students.filter(s=>
+  (grade==="all"||String(s[2])===grade) &&
+  (!search||s[1].includes(search))
+ );
+
+ document.getElementById("adminStudentList").innerHTML=
+
+ arr.map(s=>{
+
+  let ts=getStudentTeachers(s[0]);
+
+  return `
+  <div class="student">
+   <b>👤 ${esc(s[1])}</b><br>
+   📚 ${gradeText(s[2])}<br><br>
+
+   ${
+   ts.length
+   ?
+   ts.map(t=>`
+   <span class="badge">${esc(t.name)}</span>
+   `).join("")
+   :
+   "<small>معلم اختصاصی ثبت نشده</small>"
+   }
+
+  </div>
+  `;
+ }).join("")||"<div class='box'>دانش‌آموزی پیدا نشد.</div>";
+}
+
+/* چند معلم */
+function adminAssignments(){
+
+ document.getElementById("adminContent").innerHTML=`
+
+ <h2>🎯 اختصاص چند معلم به دانش‌آموز</h2>
+
+ <div class="box">
+ برای هر دانش‌آموز می‌توانی <b>چند معلم</b> را هم‌زمان انتخاب کنی.
+ </div>
+
+ <select id="assignGrade"
+ onchange="renderAssignments()">
+
+ <option value="all">همه پایه‌ها</option>
+ <option value="1">پایه اول</option>
+ <option value="2">پایه دوم</option>
+ <option value="3">پایه سوم</option>
+ <option value="4">پایه چهارم</option>
+ <option value="5">پایه پنجم</option>
+ <option value="6">پایه ششم</option>
+
+ </select>
+
+ <input
+ id="assignSearch"
+ placeholder="جستجوی دانش‌آموز..."
+ oninput="renderAssignments()">
+
+ <div id="assignmentList"></div>
+ `;
+
+ renderAssignments();
+}
+
+function renderAssignments(){
+
+ let grade=document.getElementById("assignGrade").value;
+ let search=document.getElementById("assignSearch").value.trim();
+
+ let arr=students.filter(s=>
+  (grade==="all"||String(s[2])===grade) &&
+  (!search||s[1].includes(search))
+ );
+
+ document.getElementById("assignmentList").innerHTML=
+
+ arr.map(s=>{
+
+  let selected=
+   Array.isArray(assignments[s[0]])
+   ? assignments[s[0]]
+   : [];
+
+  let selectedTeachers=
+   teachers.filter(t=>selected.includes(t.u));
+
+  return `
+  <div class="student">
+
+  <b>👤 ${esc(s[1])}</b><br>
+  <small>${gradeText(s[2])}</small>
+
+  <div class="teacher-grid">
+
+  ${
+   teachers.map(t=>`
+
+   <label class="teacher-option">
+
+   <input
+   type="checkbox"
+   ${selected.includes(t.u)?"checked":""}
+   onchange="
+   changeTeacherAssignment(
+   '${s[0]}',
+   '${t.u}',
+   this.checked
+   )">
+
+   ${esc(t.name)}
+
+   </label>
+
+   `).join("")
+  }
+
+  </div>
+
+  <div class="selected-box">
+
+  <b>معلم‌های انتخاب‌شده:</b><br>
+
+  ${
+   selectedTeachers.length
+   ?
+   selectedTeachers.map(t=>
+   `<span class="badge">${esc(t.name)}</span>`
+   ).join("")
+   :
+   "هنوز معلمی انتخاب نشده است."
+  }
+
+  </div>
+
+  </div>
+  `;
+ }).join("")||"<div class='box'>دانش‌آموزی پیدا نشد.</div>";
+}
+
+function changeTeacherAssignment(
+ studentCode,
+ teacherUsername,
+ checked
+){
+
+ if(!Array.isArray(assignments[studentCode])){
+  assignments[studentCode]=[];
+ }
+
+ if(checked){
+
+  if(!assignments[studentCode]
+  .includes(teacherUsername)){
+
+   assignments[studentCode]
+   .push(teacherUsername);
+  }
+
+ }else{
+
+  assignments[studentCode]=
+  assignments[studentCode]
+  .filter(x=>x!==teacherUsername);
+
+  if(!assignments[studentCode].length){
+   delete assignments[studentCode];
+  }
+ }
+
+ saveAll();
+
+ renderAssignments();
+}
+
+/* معلمان */
+function adminTeachers(){
+
+ document.getElementById("adminContent").innerHTML=`
+
+ <h2>👩‍🏫 مدیریت معلمان</h2>
+
+ ${
+ teachers.map(t=>`
 
  <div class="student">
 
- <b>${esc(s[1])
+ <b>${esc(t.name)}</b><br>
+
+ نام کاربری:
+ <span class="badge">${esc(t.u)}</span>
+
+ <br>
+
+ پایه‌ها:
+ ${
+ t.grades.map(g=>
+ `<span class="badge">${g}</span>`
+ ).join("")
+ }
+
+ </div>
+
+ `).join("")
+ }
+ `;
+}
+
+/* اطلاعیه */
+function adminNotices(){
+
+ document.getElementById("adminContent").innerHTML=`
+
+ <h2>📢 مدیریت اطلاعیه‌ها</h2>
+
+ <input id="noticeTitle" placeholder="عنوان اطلاعیه">
+
+ <textarea id="noticeText"
+ placeholder="متن اطلاعیه"></textarea>
+
+ <button onclick="addNotice()">➕ ثبت اطلاعیه</button>
+
+ <hr>
+
+ ${
+ announcements.map(a=>`
+ <div class="notice">
+ <b>${esc(a.title)}</b><br>
+ ${esc(a.text)}
+ </div>
+ `).join("")
+ ||"<div class='box'>اطلاعیه‌ای وجود ندارد.</div>"
+ }
+ `;
+}
+
+function addNotice(){
+
+ let title=document.getElementById("noticeTitle").value.trim();
+ let text=document.getElementById("noticeText").value.trim();
+
+ if(!title||!text){
+  alert("عنوان و متن را وارد کنید.");
+  return;
+ }
+
+ announcements.push({
+  title:title,
+  text:text,
+  date:new Date().toLocaleDateString("fa-IR")
+ });
+
+ saveAll();
+ adminNotices();
+
+ alert("اطلاعیه ثبت شد ✅");
+}
+
+/* درخواست‌ها */
+function adminRequests(){
+
+ document.getElementById("adminContent").innerHTML=`
+
+ <h2>📝 درخواست‌های والدین</h2>
+
+ ${
+ requests.length
+ ?
+ requests.map((r,i)=>`
+
+ <div class="notice">
+
+ <b>${esc(r.name||"والد")}</b><br>
+
+ ${esc(r.text)}<br>
+
+ <span class="badge">
+ ${esc(r.status||"در انتظار بررسی")}
+ </span>
+
+ <button
+ onclick="approveRequest(${i})">
+ تأیید
+ </button>
+
+ </div>
+
+ `).join("")
+ :
+ "<div class='box'>درخواستی ثبت نشده است.</div>"
+ }
+ `;
+}
+
+function approveRequest(i){
+
+ if(requests[i]){
+  requests[i].status="بررسی شد";
+  saveAll();
+  adminRequests();
+ }
+}
+
+/* پیام‌ها */
+function adminMessages(){
+
+ document.getElementById("adminContent").innerHTML=`
+
+ <h2>💬 پیام‌ها</h2>
+
+ ${
+ messages.length
+ ?
+ messages.map(m=>`
+
+ <div class="msg">
+
+ <b>${esc(m.from||"مدرسه")}</b><br>
+
+ ${esc(m.text)}
+
+ </div>
+
+ `).join("")
+ :
+ "<div class='box'>پیامی ثبت نشده است.</div>"
+ }
+ `;
+}
+
+/* تقویم */
+function adminCalendar(){
+
+ document.getElementById("adminContent").innerHTML=`
+
+ <h2>📅 تقویم مدرسه</h2>
+
+ <input id="calendarDate" placeholder="تاریخ">
+
+ <input id="calendarTitle" placeholder="عنوان برنامه">
+
+ <button onclick="addCalendar()">
+ ➕ افزودن به تقویم
+ </button>
+
+ <hr>
+
+ ${
+ calendarData.map(c=>`
+
+ <div class="notice">
+
+ <b>${esc(c.date)}</b><br>
+ ${esc(c.title)}
+
+ </div>
+
+ `).join("")
+ ||
+ "<div class='box'>برنامه‌ای ثبت نشده است.</div>"
+ }
+ `;
+}
+
+function addCalendar(){
+
+ let date=document.getElementById("calendarDate").value.trim();
+ let title=document.getElementById("calendarTitle").value.trim();
+
+ if(!date||!title){
+  alert("تاریخ و عنوان را وارد کنید.");
+  return;
+ }
+
+ calendarData.push({
+  date:date,
+  title:title
+ });
+
+ saveAll();
+ adminCalendar();
+}
+
+/* گزارش */
+function adminReport(){
+
+ document.getElementById("adminContent").innerHTML=`
+
+ <h2>📋 گزارش آماده مدیران</h2>
+
+ <div class="grid">
+
+ <div class="stat">
+ 👩‍🎓<br>
+ <b>${students.length}</b><br>
+ دانش‌آموز
+ </div>
+
+ <div class="stat">
+ 👩‍🏫<br>
+ <b>${teachers.length}</b><br>
+ معلم
+ </div>
+
+ <div class="stat">
+ 📢<br>
+ <b>${announcements.length}</b><br>
+ اطلاعیه
+ </div>
+
+ <div class="stat">
+ 📝<br>
+ <b>${requests.length}</b><br>
+ درخواست
+ </div>
+
+ </div>
+
+ <div class="box">
+ <b>گزارش عملکرد مدرسه</b><br><br>
+ ارتباط مدرسه و خانواده: فعال<br>
+ مدیریت دانش‌آموزان: فعال<br>
+ مدیریت معلمان: فعال<br>
+ اختصاص چندمعلمه: فعال
+ </div>
+
+ <button onclick="window.print()">
+ 🖨️ چاپ / ذخیره گزارش
+ </button>
+ `;
+}
+
+</script>
+
+</body>
+</html>
