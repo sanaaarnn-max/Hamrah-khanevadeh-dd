@@ -2,277 +2,689 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>همراه خانواده</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Tahoma,Arial;background:#fff;color:#403640}
-.container{max-width:900px;margin:auto;padding:15px}
-.header{background:linear-gradient(135deg,#e8a7bd,#f3c7d5);padding:28px;text-align:center;border-radius:22px;margin-bottom:18px;position:relative}
-
-  .card,.login{background:#fff5f8;border:1px solid #f1d9e2;border-radius:18px;padding:18px;margin:12px 0}
-button{width:100%;border:0;border-radius:12px;padding:13px;margin-top:10px;background:#d98eaa;color:white;font-size:16px}
-.gray{background:#938991}.red{background:#c96f7d}
-input,select,textarea{width:100%;padding:12px;margin-top:9px;border:1px solid #e4d1d9;border-radius:11px;font-family:inherit}
-textarea{min-height:100px}
-.login{max-width:450px;margin:25px auto;text-align:center}
-.panel{display:none}
-.box{background:#fff8fa;border:1px solid #f1d9e2;padding:14px;border-radius:13px;margin:10px 0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.stat{background:#fcecf2;padding:16px;border-radius:14px;text-align:center}
-.student{background:#fff;border:1px solid #efd9e2;border-radius:14px;padding:14px;margin:10px 0}
-.student b{color:#c87998;font-size:18px}
-.progress{height:18px;background:#eee;border-radius:20px;overflow:hidden}
-.fill{height:100%;background:#d98eaa}
-.footer{text-align:center;color:#999;padding:20px}
+body{
+ margin:0;font-family:Tahoma,Arial,sans-serif;background:#fff;
+ color:#333;direction:rtl
+}
+header{
+ background:#f8c9d8;padding:22px 15px;text-align:center;
+ box-shadow:0 2px 10px #ddd
+}
+header h1{margin:0;color:#222;font-size:27px}
+header p{margin:8px 0 3px;color:#444}
+header small{color:#333}
+.container{max-width:1000px;margin:auto;padding:20px}
+.card{
+ background:#fff;border:1px solid #f1d9e1;border-radius:18px;
+ padding:20px;margin:15px 0;box-shadow:0 4px 15px #eee
+}
+.login{
+ max-width:500px;margin:45px auto
+}
+h2,h3{color:#444}
+input,select,textarea{
+ width:100%;padding:12px;margin:7px 0;
+ border:1px solid #ddd;border-radius:10px;font-family:inherit
+}
+button{
+ border:0;border-radius:10px;padding:11px 17px;
+ margin:5px;cursor:pointer;font-family:inherit;
+ background:#ef9fbb;color:#222;font-weight:bold
+}
+button:hover{opacity:.85}
+.btn2{background:#eee}
+.danger{background:#f3b0b0}
+.green{background:#bde5c8}
+.hidden{display:none!important}
+.menu{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+ gap:12px;margin:15px 0
+}
+.menu button{min-height:58px;font-size:14px}
+.stat{
+ display:inline-block;background:#fff1f5;border-radius:14px;
+ padding:15px;margin:5px;min-width:130px;text-align:center
+}
+.student{
+ border:1px solid #eee;border-radius:13px;padding:13px;
+ margin:8px 0;background:#fff
+}
+.student-row{
+ display:flex;justify-content:space-between;gap:10px;
+ align-items:center
+}
+.badge{
+ display:inline-block;background:#f8d6e1;
+ padding:5px 9px;border-radius:20px;font-size:12px
+}
+.msg,.notice{
+ background:#fff5f8;padding:12px;border-radius:12px;margin:8px 0
+}
+.teacher-box{
+ background:#fafafa;border:1px solid #eee;
+ padding:12px;border-radius:12px;margin:8px 0
+}
+.checks{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+ gap:8px;margin-top:10px
+}
+.check{
+ background:#fff;border:1px solid #eee;padding:9px;
+ border-radius:9px
+}
+.check input{width:auto;margin-left:6px}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+td,th{border:1px solid #eee;padding:9px;text-align:center}
+th{background:#fbe1e9}
+.back{background:#ddd}
+footer{text-align:center;color:#888;padding:25px}
 </style>
 </head>
 
 <body>
+
+<header>
+<h1>🌱 همراه خانواده</h1>
+<p>سامانه هوشمند ارتباط مدرسه و خانواده</p>
+<small>دبستان دخترانه امام حسین (ع) ، سرخس</small><br>
+<small>نسخه نمایشی</small>
+</header>
+
 <div class="container">
 
-<div class="header">
-<h1>🌱 همراه خانواده</h1>
-  <p>سامانه هوشمند ارتباط مدرسه و خانواده</p>
-<p><b>دبستان دخترانه امام حسین (ع) ، سرخس</b>
+<!-- LOGIN -->
+<section id="loginPage" class="card login">
+<h2>ورود به سامانه</h2>
 
-<div id="home">
+<select id="loginRole">
+<option value="parent">ورود والدین</option>
+<option value="teacher">ورود معلم</option>
+<option value="admin">ورود مدیر</option>
+</select>
+
+<input id="username" placeholder="نام کاربری">
+<input id="password" type="password" placeholder="رمز عبور">
+
+<button onclick="login()">ورود به سامانه</button>
+
+<div id="loginError" style="color:#c00;margin-top:10px"></div>
+
+<div class="notice">
+<b>راهنما:</b><br>
+والدین: کد دانش‌آموز برای نام کاربری و رمز عبور<br>
+معلم: نام کاربری و رمز اختصاصی<br>
+مدیر: admin / 1234
+</div>
+</section>
+
+<!-- APP -->
+<section id="app" class="hidden">
+
 <div class="card">
-<h2>👨‍👩‍👧 والدین</h2>
-<p>مشاهده وضعیت فرزند و ارتباط با مدرسه</p>
-<button onclick="login('parent')">ورود والدین</button>
-</div>
-
-<div class="card">
-<h2>👩‍🏫 معلمان</h2>
-<p>مدیریت دانش‌آموزان و ارتباط با خانواده</p>
-<button onclick="login('teacher')">ورود معلم</button>
-</div>
-
-<div class="card">
-<h2>👩‍💼 مدیریت مدرسه</h2>
-<p>مدیریت هوشمند مدرسه</p>
-<button onclick="login('admin')">ورود مدیریت</button>
+<div class="student-row">
+<h2 id="welcome">خوش آمدید</h2>
+<button class="danger" onclick="logout()">خروج</button>
 </div>
 </div>
 
-<div id="panel" class="panel"></div>
+<!-- PARENT -->
+<div id="parentPanel" class="hidden">
 
-<div class="footer">🌱 همراه خانواده | نسخه نمایشی مدرسه</div>
+<div class="menu">
+<button onclick="parentHome()">🏠 صفحه اصلی</button>
+<button onclick="parentStudy()">📚 وضعیت تحصیلی</button>
+<button onclick="parentMessages()">💬 پیام‌های مدرسه</button>
+<button onclick="parentRequests()">📝 درخواست به مدرسه</button>
+<button onclick="parentNotices()">📢 اطلاعیه‌های مدرسه</button>
+<button onclick="parentCalendar()">📅 تقویم مدرسه</button>
 </div>
+
+<div id="parentContent" class="card"></div>
+</div>
+
+<!-- TEACHER -->
+<div id="teacherPanel" class="hidden">
+
+<div class="menu">
+<button onclick="teacherHome()">🏠 صفحه اصلی</button>
+<button onclick="teacherStudents()">👩‍🎓 دانش‌آموزان من</button>
+<button onclick="teacherAttendance()">✅ حضور و غیاب</button>
+<button onclick="teacherMessage()">💬 پیام به خانواده</button>
+<button onclick="teacherNotices()">📢 اطلاعیه‌ها</button>
+</div>
+
+<div id="teacherContent" class="card"></div>
+</div>
+
+<!-- ADMIN -->
+<div id="adminPanel" class="hidden">
+
+<div class="menu">
+<button onclick="adminHome()">📊 داشبورد مدیریت</button>
+<button onclick="adminStudents()">👩‍🎓 مدیریت دانش‌آموزان</button>
+<button onclick="adminTeachers()">👩‍🏫 مدیریت معلمان</button>
+<button onclick="adminAssignments()">🎯 اختصاص معلم به دانش‌آموز</button>
+<button onclick="adminNotices()">📢 اطلاعیه‌ها</button>
+<button onclick="adminRequests()">📝 درخواست‌های والدین</button>
+<button onclick="adminMessages()">💬 پیام‌ها</button>
+<button onclick="adminCalendar()">📅 تقویم مدرسه</button>
+<button onclick="adminReport()">📋 گزارش آماده مدیران</button>
+</div>
+
+<div id="adminContent" class="card"></div>
+</div>
+
+</section>
+</div>
+
+<footer>سامانه همراه خانواده 🌱</footer>
 
 <script>
+
+/* =========================
+   اطلاعات دانش‌آموزان
+========================= */
+
+const students=[
+["0810647133","مهرسانا اسلام پناه",1],
+["0810656477","اسرا انصاریان",1],
+["0810641437","دلارام بالفروش قاسم زاده",1],
+["0810642972","نازنین زینب بهروزی ثانی",1],
+["0810655276","حسنا پریکاری",1],
+["0810654849","طهورا تبریزی",1],
+["0962068950","رقیه حلما تنهای شمس آبادی",1],
+["0972425942","فاطمه حسنا دهقان",1],
+["0962139734","باران دهقان پور",1],
+["0982400284","فاطمه زهرا ربانی",1],
+["0962044520","نهال رجبی بدیع",1],
+["0810643790","نیایش رئیس السادات",1],
+["0810657627","سوگند سارونی",1],
+["0962233323","ترلان صادق",1],
+["0810647281","پریا عباسی",1],
+["0810646714","کوثر علی صوفی",1],
+["0810642573","فاطمه علیمرزائی",1],
+["0972329382","ارغوان فراز پور",1],
+["0962184731","فاطمه یاس قاسم زاده",1],
+["0961871431","جانان قهرمان",1],
+["0972244441","تانیا کاظمی",1],
+["0982493843","زینب مرادی",1],
+["0810643014","مهرانا میرعلیجانی",1],
+["0982395345","هلیا نادری منش",1],
+["0810655861","ارغوان وزیری",1],
+["0810642832","آوا یاوری",1],
+
+["0982308140","آوینا احتشام",2],
+["0810639483","مهرگان امیری",2],
+["0810612623","نفس بندانی",2],
+["0810628333","آوینا تاجکی",2],
+["0972145613","آوا خوران",2],
+["0961969784","دلسا رضایی",2],
+["0810627711","الناز زیدی نوروز آباد",2],
+["0810632391","روشنا سهرابی",2],
+["0972218749","لیانا سیادتی",2],
+["0810633892","شمیسا شایق",2],
+["0982227744","سلین علیمیرزائی",2],
+["0961898283","لنا فلاح",2],
+["0810633329","آتوسا قبادی",2],
+["0810631091","فاطمه زیبا کسرایی زاده",2],
+["0982268874","پانیذ مالکی نیا",2],
+["09822393","زهرا محمدحسینی",2],
+["0810625822","نازنین زهرا محمدی",2],
+["0972265902","هیلدا محمودی",2],
+["0972185127","فرناز مند‌وستی",2],
+["0810627280","فائزه مهدی فر",2],
+["0982272855","زینب میر",2],
+["0972199470","سلین میرپیشی",2],
+["4870570599","نورسا ولی دوست",2],
+
+["0810605651","مائده اسدی",3],
+["0810613824","پریا اسدیان نژاد",3],
+["0971959791","آرشیدا انصاری نیا",3],
+["0810622327","آندیا آریان پور",3],
+["0961695838","ریحانه باصری",3],
+["0972093753","بهار بتویی",3],
+["0981790275","فاطمه پوروش",3],
+["0961627328","جانان جهانی",3],
+["0810608881","زهرا حدادی",3],
+["0910505888","ثنا حقدادی",3],
+["0810620820","آدرینا رکنی",3],
+["0810612739","آوا رهنما",3],
+["0961592907","سحر زین الدین",3],
+["0982022352","مونا سارانی",3],
+["0961703067","ویانا سارونی",3],
+["0982045956","درسا سالارخانی",3],
+["0810608677","اسرا سعبی",3],
+["0810609908","پارمیس صانعی",3],
+["0972091483","گوهر علیزائی",3],
+["0810610681","ریحانه علیمیرزایی",3],
+["0810612518","یکتا مدوری",3],
+["0972094288","دلسا ناصری",3],
+["0810607042","حلما نجاری دوحصاران",3],
+["0981964370","آناهیتا نجاری عبدل آبادی",3],
+
+["0810597489","سارا امیدفر",4],
+["0810592584","حسنا پناهیان",4],
+["0810589761","الینا تاجکی",4],
+["0810597292","زهرا تبریزی",4],
+["0971606781","ثمین توکلی",4],
+["0810603934","ریحانه جبروتی",4],
+["0810593114","رضوانه حسن پور",4],
+["0810596709","غزل خزاعی",4],
+["0971921512","فاطمه خیری جنت آبادی",4],
+["0971955141","باران دستان",4],
+["0981664946","ریحانه زهرا ربانی",4],
+["0810581361","ریحانه رحیمی",4],
+["0810593807","فاطمه رضایی",4],
+["0810583119","نفیسه سادات ریئس السادات",4],
+["0971822591","بهار عرب قاینی",4],
+["0810603950","فاطیما علیمیرزایی",4],
+["0810598442","السا فروزانفر",4],
+["0961475528","لیانا فلاح",4],
+["0641641087","مهنا قصابی",4],
+["0981585426","فاطمه کاظمی نیک",4],
+["0971898154","حلما کرمانی",4],
+["3382863707","نازنین زهرا نژاد شاهرخ آبادی",4],
+["0810587688","اسراء نورزایی",4],
+["0810594863","هلیا نوری سیستانی",4],
+["0971773610","نشاط نیک منش",4],
+["0810600307","فریماه هرمزی",4],
+
+["0961203471","آیسان احمدی",5],
+["0810558602","اسرا احمدی",5],
+["0810576937","آیدا اخروی",5],
+["0810580152","معصومه بلقدر",5],
+["0810566141","زهرا چشک",5],
+["0971510601","سارا حدادی",5],
+["0810580799","بهار راشکی",5],
+["0810561190","مریم زال خانی",5],
+["7600024675","یسنا زمانی نژاد",5],
+["0810567741","نازنین زهرا سرحدی",5],
+["0971530262","نادیا سندگل",5],
+["0810559277","نازنین سندگل",5],
+["0810566001","سلما سیستانی",5],
+["0810560518","یکتا عباس زاده",5],
+["0810578085","هانیه علی میرزایی",5],
+["0810578743","النا علی میرزایی",5],
+["0810576759","ثمین عرب خزاعی",5],
+["0810570076","الینا غفاری",5],
+["0810577496","فائزه فداکار",5],
+["0961247088","حلما کاردان",5],
+["0810566664","سوگند گزمه",5],
+["0810577151","فاطمه لطفی",5],
+["0961129026","سیده حلما مهدی دوست",5],
+["0910470049","هانیه وافی باغسیاه",5],
+["0810578549","حلما وزیری",5],
+["0971694869","ضحا وزیری",5],
+["4870516276","حسیبا ولی دوست",5],
+
+["0810546183","فاطمه ارمی نغز",6],
+["0810536315","آیناز اصغر زاده",6],
+["0810531331","مهرانه بلوچی",6],
+["0810541904","ثمین چوبداری",6],
+["0810539632","دینا حقیقی نژاد",6],
+["0980805643","فاطمه خطیبی نیا",6],
+["0810537001","ستیلا خوانچه زرین",6],
+["3641757029","زهرا رجائی فر",6],
+["0961057221","ثمین رستم نژاد",6],
+["0810533251","باران رضایی",6],
+["0950475513","حلما رمضان زاده",6],
+["0810545144","نازنین زهرا عرب قدیمی",6],
+["0810553252","نجمه عرفانیان",6],
+["0810533782","نازنین زینب علی پور",6],
+["0981060161","نفیسه علیجانی نغز",6],
+["0810529793","یسنا علیمیرزایی",6],
+["0810539837","زینب فرهمندی",6],
+["0691615918","ارغوان قادری",6],
+["0810539977","فاطمه زهرا قلنداران",6],
+["0810532557","هستی محمودی",6],
+["0810540436","مهسا مدوری",6],
+["0810536919","نازگل نظام نیا",6],
+["0810535629","بهار نعمت پور",6],
+["0810544751","اسرا نوری",6]
+];
+
+/* =========================
+   معلمان
+========================= */
+
+const teachers=[
+{u:"mandoosti",p:"1122",name:"خانم مندوستی",grades:[1]},
+{u:"asadi",p:"2233",name:"خانم اسدی",grades:[2]},
+{u:"torshizi",p:"3344",name:"خانم ترشیزی",grades:[3]},
+{u:"saidi",p:"4455",name:"خانم صیدی",grades:[4,5,6]},
+{u:"shahraki",p:"5566",name:"خانم شهرکی",grades:[4,5,6]},
+{u:"esfandi",p:"6677",name:"خانم اسفندی",grades:[4,5,6]},
+{u:"tavakoli",p:"7788",name:"خانم توکلی",grades:[1,2,3,4,5,6]},
+{u:"ghasemzadeh",p:"8899",name:"خانم قاسم زاده",grades:[1,2,3,4,5,6]},
+{u:"yousefi",p:"1133",name:"خانم یوسفی",grades:[2,3,4,5,6]},
+{u:"komeili",p:"1144",name:"خانم کمیلی",grades:[1,2,3,4,5,6]},
+{u:"shariati",p:"1155",name:"خانم شریعتی",grades:[1,2,3,4,5,6]},
+{u:"khanebaz",p:"1333",name:"خانم خانه باز",grades:[1,2,3,4,5,6]},
+{u:"dana",p:"1166",name:"خانم دانا",grades:[1,2,3,4,5,6]}
+];
+
+const admin={u:"admin",p:"1234",name:"مدیر مدرسه"};
+
 let role="";
+let currentUser=null;
+let currentStudent=null;
 
-function login(r){
-role=r;
-let title=r==="parent"?"ورود والدین":r==="teacher"?"ورود معلم":"ورود مدیریت";
-document.getElementById("home").style.display="none";
-document.getElementById("panel").style.display="block";
-document.getElementById("panel").innerHTML=
-'<div class="login"><h2>🔐 '+title+'</h2>'+
-'<input id="user" placeholder="نام کاربری">'+
-'<input id="pass" type="password" placeholder="رمز عبور">'+
-'<button onclick="checkLogin()">ورود</button>'+
-'<button class="gray" onclick="home()">بازگشت</button></div>';
+let announcements=JSON.parse(localStorage.getItem("hf_announcements")||"[]");
+let requests=JSON.parse(localStorage.getItem("hf_requests")||"[]");
+let messages=JSON.parse(localStorage.getItem("hf_messages")||"[]");
+let calendar=JSON.parse(localStorage.getItem("hf_calendar")||"[]");
+let assignments=JSON.parse(localStorage.getItem("hf_assignments")||"{}");
+let attendance=JSON.parse(localStorage.getItem("hf_attendance")||"{}");
+
+/* =========================
+   ابزارها
+========================= */
+
+function save(){
+ localStorage.setItem("hf_announcements",JSON.stringify(announcements));
+ localStorage.setItem("hf_requests",JSON.stringify(requests));
+ localStorage.setItem("hf_messages",JSON.stringify(messages));
+ localStorage.setItem("hf_calendar",JSON.stringify(calendar));
+ localStorage.setItem("hf_assignments",JSON.stringify(assignments));
+ localStorage.setItem("hf_attendance",JSON.stringify(attendance));
 }
 
-function checkLogin(){
-let u=document.getElementById("user").value;
-let p=document.getElementById("pass").value;
-
-if((role==="parent"&&u==="parent"&&p==="2468")||
-(role==="teacher"&&u==="teacher"&&p==="5678")||
-(role==="admin"&&u==="admin"&&p==="1234")){
-if(role==="parent")showParent();
-if(role==="teacher")showTeacher();
-if(role==="admin")showAdmin();
-}else alert("نام کاربری یا رمز عبور اشتباه است ❗");
+function esc(x){
+ return String(x??"").replace(/[&<>"']/g,m=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",
+ '"':"&quot;","'":"&#039;"
+ }[m]));
 }
 
-function home(){
-document.getElementById("panel").style.display="none";
-document.getElementById("home").style.display="block";
+function normalize(x){
+ return String(x??"").replace(/[۰-۹]/g,d=>"۰۱۲۳۴۵۶۷۸۹".indexOf(d))
+ .replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d));
 }
 
-function back(){
-if(role==="parent")showParent();
-else if(role==="teacher")showTeacher();
-else showAdmin();
+function gradeText(g){
+ return "پایه "+g+" ابتدایی";
 }
 
-function showParent(){
-document.getElementById("panel").innerHTML=
-'<div class="card"><h2>👨‍👩‍👧 پنل والدین</h2>'+
-'<div class="box"><b>👤 فرزند:</b> آرین محمدی<br>📚 پایه: سوم</div>'+
-'<h3>📊 وضعیت آموزشی</h3>'+
-'<p>پیشرفت آموزشی</p><div class="progress"><div class="fill" style="width:85%"></div></div>'+
-'<p>حضور و مشارکت: بسیار خوب</p>'+
-'<button onclick="parentMessage()">💬 پیام به مدرسه</button>'+
-'<button onclick="announcements()">📢 اطلاعیه‌های مدرسه</button>'+
-'<button onclick="calendar()">📅 تقویم مدرسه</button>'+
-'<button class="gray" onclick="home()">خروج</button></div>';
+function getStudent(code){
+ return students.find(s=>normalize(s[0])===normalize(code));
 }
 
-function parentMessage(){
-document.getElementById("panel").innerHTML=
-'<div class="card"><h2>💬 پیام به مدرسه</h2>'+
-'<input id="parentName" placeholder="نام و نام خانوادگی والد">'+
-'<input id="childName" placeholder="نام و نام خانوادگی فرزند">'+
-'<select id="childGrade">'+
-'<option value="">انتخاب پایه</option>'+
-'<option>اول</option><option>دوم</option><option>سوم</option>'+
-'<option>چهارم</option><option>پنجم</option><option>ششم</option>'+
-'</select>'+
-'<textarea id="req" placeholder="متن پیام خود را بنویسید..."></textarea>'+
-'<button onclick="sendRequest()">📩 ارسال پیام</button>'+
-'<button class="gray" onclick="showParent()">بازگشت</button></div>';
+function assignedTeachers(code){
+ return teachers.filter(t=>(assignments[code]||[]).includes(t.u));
+}
+
+function teacherHasExplicit(u){
+ return Object.values(assignments).some(a=>Array.isArray(a)&&a.includes(u));
+}
+
+function getTeacherStudents(u){
+ const t=teachers.find(x=>x.u===u);
+ if(!t)return[];
+ if(teacherHasExplicit(u)){
+  return students.filter(s=>(assignments[s[0]]||[]).includes(u));
+ }
+ return students.filter(s=>t.grades.includes(s[2]));
+}
+
+function setContent(id,html){
+ document.getElementById(id).innerHTML=html;
+}
+
+function hideAll(){
+ document.getElementById("parentPanel").classList.add("hidden");
+ document.getElementById("teacherPanel").classList.add("hidden");
+ document.getElementById("adminPanel").classList.add("hidden");
+}
+
+/* =========================
+   ورود
+========================= */
+
+function login(){
+ const r=document.getElementById("loginRole").value;
+ const u=normalize(document.getElementById("username").value.trim());
+ const p=normalize(document.getElementById("password").value.trim());
+ const err=document.getElementById("loginError");
+
+ err.textContent="";
+
+ if(r==="admin"){
+  if(u===admin.u&&p===admin.p){
+   role="admin";currentUser=admin;openPanel();
+   return;
+  }
+ }
+
+ if(r==="teacher"){
+  const t=teachers.find(x=>x.u.toLowerCase()===u.toLowerCase()&&normalize(x.p)===p);
+  if(t){
+   role="teacher";currentUser=t;openPanel();
+   return;
+  }
+ }
+
+ if(r==="parent"){
+  const s=getStudent(u);
+  if(s&&normalize(s[0])===p){
+   role="parent";currentUser=s;currentStudent=s;openPanel();
+   return;
+  }
+ }
+
+ err.textContent="نام کاربری یا رمز عبور صحیح نیست.";
+}
+
+function openPanel(){
+ document.getElementById("loginPage").classList.add("hidden");
+ document.getElementById("app").classList.remove("hidden");
+ hideAll();
+
+ document.getElementById("welcome").textContent=
+ role==="admin"?"سلام مدیر مدرسه 🌷":
+ role==="teacher"?"سلام "+currentUser.name+" 🌷":
+ "سلام خانواده "+currentStudent[1]+" 🌷";
+
+ if(role==="parent"){
+  document.getElementById("parentPanel").classList.remove("hidden");
+  parentHome();
+ }
+ if(role==="teacher"){
+  document.getElementById("teacherPanel").classList.remove("hidden");
+  teacherHome();
+ }
+ if(role==="admin"){
+  document.getElementById("adminPanel").classList.remove("hidden");
+  adminHome();
+ }
+}
+
+function logout(){
+ location.reload();
+}
+
+/* =========================
+   والدین
+========================= */
+
+function parentHome(){
+ const s=currentStudent;
+ const ts=assignedTeachers(s[0]);
+
+ setContent("parentContent",`
+ <h2>🏠 صفحه اصلی</h2>
+ <div class="stat">👩‍🎓<br><b>${esc(s[1])}</b></div>
+ <div class="stat">📚<br>${gradeText(s[2])}</div>
+ <div class="stat">👩‍🏫<br>${ts.length?ts.length:"هنوز ثبت نشده"} معلم</div>
+ <hr>
+ <h3>خلاصه وضعیت</h3>
+ <p>به سامانه همراه خانواده خوش آمدید.</p>
+ <p>اطلاعیه‌ها، پیام‌ها، درخواست‌ها و وضعیت تحصیلی فرزندتان از این بخش قابل مشاهده است.</p>
+ `);
+}
+
+function parentStudy(){
+ const s=currentStudent;
+ setContent("parentContent",`
+ <h2>📚 وضعیت تحصیلی</h2>
+ <div class="student">
+ <b>${esc(s[1])}</b><br>
+ ${gradeText(s[2])}
+ </div>
+ <table>
+ <tr><th>مورد</th><th>وضعیت</th></tr>
+ <tr><td>فعالیت کلاسی</td><td>در حال بررسی</td></tr>
+ <tr><td>ارزشیابی</td><td>ثبت نشده</td></tr>
+ <tr><td>حضور و غیاب</td><td>قابل مشاهده توسط مدرسه</td></tr>
+ </table>
+ `);
+}
+
+function parentMessages(){
+ const arr=messages.filter(m=>m.student===currentStudent[0]||m.student==="all");
+ setContent("parentContent",`
+ <h2>💬 پیام‌های مدرسه</h2>
+ ${arr.length?arr.map(m=>`
+ <div class="msg">
+ <b>${esc(m.from||"مدرسه")}</b><br>
+ ${esc(m.text)}
+ </div>`).join(""):"<p>پیامی ثبت نشده است.</p>"}
+ `);
+}
+
+function parentRequests(){
+ setContent("parentContent",`
+ <h2>📝 درخواست به مدرسه</h2>
+ <textarea id="requestText" rows="5" placeholder="متن درخواست خود را بنویسید..."></textarea>
+ <button onclick="sendRequest()">ثبت درخواست</button>
+ <hr>
+ <h3>درخواست‌های من</h3>
+ ${requests.filter(r=>r.student===currentStudent[0]).map(r=>`
+ <div class="msg">
+ ${esc(r.text)}<br>
+ <span class="badge">${esc(r.status||"در انتظار بررسی")}</span>
+ </div>`).join("")||"<p>درخواستی ثبت نشده است.</p>"}
+ `);
 }
 
 function sendRequest(){
-let parent=document.getElementById("parentName").value.trim();
-let child=document.getElementById("childName").value.trim();
-let grade=document.getElementById("childGrade").value;
-let message=document.getElementById("req").value.trim();
-
-if(!parent || !child || !grade || !message){
-alert("لطفاً همه اطلاعات را وارد کنید ❗");
-return;
+ const t=document.getElementById("requestText").value.trim();
+ if(!t)return alert("متن درخواست را وارد کنید.");
+ requests.push({
+  student:currentStudent[0],
+  name:currentStudent[1],
+  text:t,
+  status:"در انتظار بررسی",
+  date:new Date().toLocaleDateString("fa-IR")
+ });
+ save();parentRequests();
+ alert("درخواست با موفقیت ثبت شد.");
 }
 
-let request={
-parent:parent,
-child:child,
-grade:grade,
-message:message
-};
-
-localStorage.setItem("request",JSON.stringify(request));
-
-alert("پیام با موفقیت ارسال شد ✅");
-showParent();
+function parentNotices(){
+ setContent("parentContent",`
+ <h2>📢 اطلاعیه‌های مدرسه</h2>
+ ${announcements.length?announcements.slice().reverse().map(a=>`
+ <div class="notice">
+ <b>${esc(a.title)}</b><br>
+ ${esc(a.text)}<br>
+ <small>${esc(a.date||"")}</small>
+ </div>`).join(""):"<p>اطلاعیه‌ای ثبت نشده است.</p>"}
+ `);
 }
 
-function announcements(){
-document.getElementById("panel").innerHTML=
-'<div class="card"><h2>📢 اطلاعیه‌های مدرسه</h2>'+
-'<div class="box"><b>شروع هفته آموزشی</b><br>حضور دانش‌آموزان طبق برنامه مدرسه انجام می‌شود.</div>'+
-'<div class="box"><b>جلسه اولیا و مربیان</b><br>زمان جلسه از طریق مدرسه اعلام خواهد شد.</div>'+
-'<button class="gray" onclick="showParent()">بازگشت</button></div>';
+function parentCalendar(){
+ setContent("parentContent",`
+ <h2>📅 تقویم مدرسه</h2>
+ ${calendar.length?calendar.map(c=>`
+ <div class="notice">
+ <b>${esc(c.date)}</b><br>${esc(c.title)}
+ </div>`).join(""):"<p>موردی در تقویم ثبت نشده است.</p>"}
+ `);
 }
 
-function calendar(){
-document.getElementById("panel").innerHTML=
-'<div class="card"><h2>📅 تقویم هوشمند مدرسه</h2>'+
-'<div class="box">شنبه — جلسه معلمان</div>'+
-'<div class="box">دوشنبه — جلسه اولیا و مربیان</div>'+
-'<div class="box">چهارشنبه — ارزیابی آموزشی</div>'+
-'<button class="gray" onclick="back()">بازگشت</button></div>';
+/* =========================
+   معلم
+========================= */
+
+function teacherHome(){
+ const arr=getTeacherStudents(currentUser.u);
+ setContent("teacherContent",`
+ <h2>🏠 صفحه اصلی معلم</h2>
+ <div class="stat">👩‍🎓<br><b>${arr.length}</b><br>دانش‌آموز قابل مشاهده</div>
+ <div class="stat">📚<br>${currentUser.grades.join("، ")}<br>پایه</div>
+ <p>در بخش «دانش‌آموزان من» فقط دانش‌آموزانی را می‌بینید که به شما اختصاص داده شده‌اند.</p>
+ `);
 }
 
-function showTeacher(){
-document.getElementById("panel").innerHTML=
-'<div class="card"><h2>👩‍🏫 پنل معلم</h2>'+
-'<div class="grid"><div class="stat">👨‍🎓<br>دانش‌آموزان<br><b>'+getStudents().length+'</b></div>'+
-'<div class="stat">💬<br>ارتباط با خانواده</div></div>'+
-'<button onclick="studentList()">👨‍🎓 فهرست دانش‌آموزان</button>'+
-'<button onclick="teacherMessage()">💬 ارتباط با خانواده‌ها</button>'+
-'<button onclick="calendar()">📅 تقویم مدرسه</button>'+
-'<button class="gray" onclick="home()">خروج</button></div>';
+function teacherStudents(){
+ const arr=getTeacherStudents(currentUser.u);
+
+ setContent("teacherContent",`
+ <h2>👩‍🎓 دانش‌آموزان من</h2>
+ ${arr.length?arr.map(s=>`
+ <div class="student">
+ <div class="student-row">
+ <div><b>${esc(s[1])}</b><br><small>${gradeText(s[2])}</small></div>
+ <span class="badge">اختصاص‌یافته</span>
+ </div>
+ </div>`).join(""):"<p>دانش‌آموزی برای شما اختصاص داده نشده است.</p>"}
+ `);
 }
 
-function studentList(){
-let s=getStudents();
-let h='<div class="card"><h2>👨‍🎓 فهرست دانش‌آموزان</h2>';
-if(!s.length)h+='<div class="box">هنوز دانش‌آموزی ثبت نشده است.</div>';
-s.forEach(x=>h+='<div class="student"><b>👤 '+x.name+'</b><br>📚 پایه: '+x.grade+'</div>');
-h+='<button class="gray" onclick="showTeacher()">بازگشت</button></div>';
-document.getElementById("panel").innerHTML=h;
+function teacherAttendance(){
+ const arr=getTeacherStudents(currentUser.u);
+
+ setContent("teacherContent",`
+ <h2>✅ ثبت حضور و غیاب</h2>
+ <p>وضعیت امروز هر دانش‌آموز را انتخاب کنید.</p>
+ ${arr.map(s=>`
+ <div class="student">
+ <b>${esc(s[1])}</b>
+ <select id="att_${s[0]}">
+ <option>حاضر</option>
+ <option>غایب</option>
+ <option>تاخیر</option>
+ </select>
+ </div>`).join("")}
+ <button onclick="saveAttendance()">💾 ذخیره حضور و غیاب</button>
+ `);
+}
+
+function saveAttendance(){
+ const arr=getTeacherStudents(currentUser.u);
+ const today=new Date().toLocaleDateString("fa-IR");
+ if(!attendance[today])attendance[today]={};
+
+ arr.forEach(s=>{
+  const el=document.getElementById("att_"+s[0]);
+  if(el)attendance[today][s[0]]=el.value;
+ });
+ save();
+ alert("حضور و غیاب ذخیره شد.");
 }
 
 function teacherMessage(){
-document.getElementById("panel").innerHTML=
-'<div class="card"><h2>💬 ارتباط با خانواده‌ها</h2>'+
-'<textarea placeholder="پیام خود را بنویسید..."></textarea>'+
-'<button onclick="alert(\'پیام با موفقیت ثبت شد ✅\')">ارسال پیام</button>'+
-'<button class="gray" onclick="showTeacher()">بازگشت</button></div>';
+ const arr=getTeacherStudents(currentUser.u);
+
+ setContent("teacherContent",`
+ <h2>💬 پیام به خانواده</h2>
+ <select id="messageStudent">
+ ${arr.map(s=>`<option value="${s[0]}">${esc(s[1])}</option>`).join("")}
+ </select>
+ <textarea id="teacherMsg" rows="5" placeholder="پیام خود را بنویسید..."></textarea>
+ <button onclick="sendTeacherMessage()">ارسال پیام</button>
+ `);
 }
 
-function showAdmin(){
-document.getElementById("panel").innerHTML=
-'<div class="card"><h2>👩‍💼 داشبورد مدیریت</h2>'+
-'<div class="grid"><div class="stat">👨‍🎓<br>دانش‌آموزان<br><b>'+getStudents().length+'</b></div>'+
-'<div class="stat">📨<br>درخواست‌ها<br><b>1</b></div></div>'+
-'<button onclick="studentManagement()">👨‍🎓 مدیریت دانش‌آموزان</button>'+
-'<button onclick="adminRequest()">📨 درخواست‌های والدین</button>'+
-'<button onclick="adminReport()">📊 گزارش عملکرد مدرسه</button>'+
-'<button onclick="announcements()">📢 مدیریت اطلاعیه‌ها</button>'+
-'<button onclick="calendar()">📅 تقویم هوشمند</button>'+
-'<button class="gray" onclick="home()">خروج</button></div>';
-}
+function sendTeacherMessage(){
+ const s=document.getElementById("messageStudent").value;
+ const text=document.getElementById("teacherMsg").value.trim();
+ if(!text)return alert("پیام را وارد کنید.");
 
-function getStudents(){
-return JSON.parse(localStorage.getItem("students")||"[]");
-}
-
-function saveStudents(x){
-localStorage.setItem("students",JSON.stringify(x));
-}
-
-function studentManagement(){
-let s=getStudents();
-let h='<div class="card"><h2>👨‍🎓 مدیریت دانش‌آموزان</h2>'+
-'<input id="studentName" placeholder="نام و نام خانوادگی">'+
-'<select id="studentGrade"><option value="">انتخاب پایه</option>'+
-'<option>اول</option><option>دوم</option><option>سوم</option>'+
-'<option>چهارم</option><option>پنجم</option><option>ششم</option></select>'+
-'<button onclick="addStudent()">💾 ذخیره دانش‌آموز</button><h3>📋 فهرست</h3>';
-
-if(!s.length)h+='<div class="box">هنوز دانش‌آموزی ثبت نشده است.</div>';
-
-s.forEach(x=>{
-h+='<div class="student"><b>👤 '+x.name+'</b><br>📚 پایه: '+x.grade+
-'<button class="red" onclick="deleteStudent('+x.id+')">🗑️ حذف</button></div>';
-});
-
-h+='<button class="gray" onclick="showAdmin()">بازگشت</button></div>';
-document.getElementById("panel").innerHTML=h;
-}
-
-function addStudent(){
-let n=document.getElementById("studentName").value.trim();
-let g=document.getElementById("studentGrade").value;
-if(!n||!g){alert("نام و پایه را وارد کنید ❗");return}
-let s=getStudents();
-s.push({id:Date.now(),name:n,grade:g});
-saveStudents(s);
-alert("دانش‌آموز ذخیره شد ✅");
-studentManagement();
-}
-
-function deleteStudent(id){
-let s=getStudents().filter(x=>x.id!==id);
-saveStudents(s);
-studentManagement();
-}
-
-function adminRequest(){
-let r=localStorage.getItem("request")||"درخواستی ثبت نشده است.";
-document.getElementById("panel").innerHTML=
-'<div class="card"><h2>📨 درخواست‌های والدین</h2>'+
-'<div class="box">'+r+'</div>'+
-'<button class="gray" onclick="showAdmin()">بازگشت</button></div>';
-}
-
-function adminReport(){
-document.getElementById("panel").innerHTML=
-'<div class="card"><h2>📊 گزارش عملکرد مدرسه</h2>'+
-'<div class="stat"><span>میزان پیشرفت آموزشی</span><h1>۸۵٪</h1></div>'+
-'<div class="box">حضور و مشارکت دانش‌آموزان: بسیار خوب</div>'+
-'<div class="box">ارتباط مدرسه و خانواده: فعال</div>'+
-'<button onclick="window.print()">🖨️ چاپ / ذخیره گزارش</button>'+
-'<button class="gray" onclick="showAdmin()">بازگشت</button></div>';
-}
-</script>
-</body>
-</html>
+ messages.push({
+  studen
